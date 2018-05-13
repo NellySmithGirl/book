@@ -2,9 +2,9 @@
 <% String path = request.getContextPath(); %>
 <html>
 <head>
-    <title>Title</title>
+    <title>list</title>
 </head>
 <body>
-    <script type="text/javascript" src="${path}/res/test.js"></script>
+    书名:${name}
 </body>
 </html>
