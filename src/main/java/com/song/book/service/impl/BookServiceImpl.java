@@ -15,5 +15,10 @@ public class BookServiceImpl implements BookService{
     public Book get(Integer id) {
         return bookMapper.selectByPrimaryKey(id);
     }
-
+    public void updatebook(){
+        updateLog();
+    }
+    public void updateLog(){
+        //insert into log 张三5月14号借走了西游记(id=1)
+    }
 }

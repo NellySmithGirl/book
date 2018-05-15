@@ -33,7 +33,31 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
     <!-- 5.spring事务管理 -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+<!--    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"></property>
+    </bean>-->
+    <!-- 事务 -->
+    <!-- 注册事务管理器 -->
+    <bean id="myTxManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
     </bean>
+    <!-- 注册事务通知 -->
+    <tx:advice id="txAdvice" transaction-manager="myTxManager">
+        <tx:attributes>
+            <!-- 指定在连接点方法上应用的事务属性 -->
+            <!-- 所有方法都是事务方法 -->
+            <tx:method name="*"/>
+            <!--以get开始的所有方法  -->
+            <tx:method name="get*" read-only="true"/>
+            <!--<tx:method name="open*" isolation="DEFAULT" propagation="REQUIRED"/>
+            <tx:method name="buyStock" isolation="DEFAULT" propagation="REQUIRED" rollback-for="StockException"/>-->
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- AOP配置 -->
+    <aop:config>
+        <!-- 指定切入点 -->
+        <aop:pointcut expression="execution(* *..service.*.*(..))" id="stockPointCut"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="stockPointCut"/>
+    </aop:config>
 </beans>
