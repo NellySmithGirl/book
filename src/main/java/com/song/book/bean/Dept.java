@@ -1,11 +1,22 @@
 package com.song.book.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Dept implements Serializable {
     private Integer id;
 
     private String name;
+
+    private List<Emp> emps;
+
+    public List<Emp> getEmps() {
+        return emps;
+    }
+
+    public void setEmps(List<Emp> emps) {
+        this.emps = emps;
+    }
 
     private static final long serialVersionUID = 1L;
 
@@ -48,5 +59,14 @@ public class Dept implements Serializable {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Dept{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", emps=" + emps +
+                '}';
     }
 }

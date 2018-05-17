@@ -13,6 +13,16 @@ public class Emp implements Serializable {
 
     private Integer dId;
 
+    private Dept dept;
+
+    public Dept getDept() {
+        return dept;
+    }
+
+    public void setDept(Dept dept) {
+        this.dept = dept;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -84,5 +94,17 @@ public class Emp implements Serializable {
         result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
         result = prime * result + ((getdId() == null) ? 0 : getdId().hashCode());
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Emp{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", dId=" + dId +
+                ", dept=" + dept +
+                '}';
     }
 }

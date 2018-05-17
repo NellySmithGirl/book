@@ -2,6 +2,8 @@ package com.song.book.dao;
 
 import com.song.book.bean.Dept;
 
+import java.util.List;
+
 public interface DeptMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -10,6 +12,8 @@ public interface DeptMapper {
     int insertSelective(Dept record);
 
     Dept selectByPrimaryKey(Integer id);
+
+    List<Dept> getDept();
 
     int updateByPrimaryKeySelective(Dept record);
 

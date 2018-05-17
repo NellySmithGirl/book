@@ -14,6 +14,6 @@ public class EmpServiceImp implements EmpService {
 
     @Override
     public List<Emp> getAll() {
-        return empMapper.selectAll();
+        return empMapper.getAll();
     }
 }

@@ -7,15 +7,52 @@
     <result column="gender" jdbcType="CHAR" property="gender" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="d_id" jdbcType="INTEGER" property="dId" />
+    <association property="dept" javaType="com.song.book.bean.Dept">
+      <id column="dept_id" property="id"/>
+      <result column="dept_name" property="name"/>
+    </association>
   </resultMap>
   <sql id="Base_Column_List">
     id, name, gender, email, d_id
+  </sql>
+  <sql id="Base_Column_List2">
+    e.id, e.name, e.gender, e.email, e.d_id , d.id AS dept_id ,d.name AS dept_name
+  </sql>
+  <sql id="Where_Column_List">
+    WHERE 1=1
+    <if test="id != null">
+      AND id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="name != null">
+      AND `name` = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="gender != null">
+      AND gender = #{gender,jdbcType=CHAR}
+    </if>
+    <if test="email != null">
+      AND email = #{email,jdbcType=VARCHAR}
+    </if>
+    <if test="dId != null">
+      AND d_id =  #{dId,jdbcType=INTEGER}
+    </if>
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from emp
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getAll"   resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from emp
+  </select>
+  
+  <select id="getByEmp" parameterType="com.song.book.bean.Emp"   resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List2" />
+    from emp e LEFT JOIN dept d ON d.id = e.d_id
+    <include refid="Where_Column_List" />
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from emp
@@ -88,101 +125,6 @@
       gender = #{gender,jdbcType=CHAR},
       email = #{email,jdbcType=VARCHAR},
       d_id = #{dId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.song.book.bean.Emp">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="gender" jdbcType="CHAR" property="gender" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="d_id" jdbcType="INTEGER" property="d_id" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, name, gender, email, d_id
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from emp
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll"  resultMap="java.util.List">
-    select
-    <include refid="Base_Column_List" />
-    from emp
-    where 1=1
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from emp
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.song.book.bean.Emp">
-    insert into emp (id, name, gender, 
-      email, d_id)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, 
-      #{email,jdbcType=VARCHAR}, #{d_id,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.song.book.bean.Emp">
-    insert into emp
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="gender != null">
-        gender,
-      </if>
-      <if test="email != null">
-        email,
-      </if>
-      <if test="d_id != null">
-        d_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null">
-        #{gender,jdbcType=CHAR},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="d_id != null">
-        #{d_id,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.song.book.bean.Emp">
-    update emp
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null">
-        gender = #{gender,jdbcType=CHAR},
-      </if>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="d_id != null">
-        d_id = #{d_id,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.song.book.bean.Emp">
-    update emp
-    set name = #{name,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=CHAR},
-      email = #{email,jdbcType=VARCHAR},
-      d_id = #{d_id,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
