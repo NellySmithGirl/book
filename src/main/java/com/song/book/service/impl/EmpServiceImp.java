@@ -16,4 +16,14 @@ public class EmpServiceImp implements EmpService {
     public List<Emp> getAll() {
         return empMapper.getAll();
     }
+
+    @Override
+    public int deleteById(Integer id) {
+        return empMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public Emp getById(Integer id) {
+        return empMapper.selectByPrimaryKey(id);
+    }
 }

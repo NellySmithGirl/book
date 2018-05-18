@@ -7,4 +7,8 @@ import java.util.List;
 public interface EmpService {
 
     List<Emp> getAll();
+
+    int deleteById(Integer id);
+
+    Emp getById(Integer id);
 }
