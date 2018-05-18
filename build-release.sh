@@ -16,7 +16,7 @@ then
 	exit 1
 fi
 
-mvn deploy -Dmaven.test.skip=true
+mvn install -Dmaven.test.skip=true
 
 if [ $? != 0 ]
 then
