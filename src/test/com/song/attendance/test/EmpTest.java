@@ -1,14 +1,12 @@
-package com.song.book.test;
+package com.song.attendance.test;
 
-import com.song.book.bean.Emp;
-import com.song.book.dao.EmpMapper;
+import com.song.attendance.bean.Emp;
+import com.song.attendance.dao.EmpMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:spring/spring-context.xml"})

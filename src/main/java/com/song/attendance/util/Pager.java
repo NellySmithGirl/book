@@ -1,4 +1,4 @@
-package com.song.book.util;
+package com.song.attendance.util;
 
 import java.io.Serializable;
 import java.util.List;

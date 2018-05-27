@@ -1,6 +1,6 @@
-package com.song.book.dao;
+package com.song.attendance.dao;
 
-import com.song.book.bean.Emp;
+import com.song.attendance.bean.Emp;
 
 import java.util.List;
 

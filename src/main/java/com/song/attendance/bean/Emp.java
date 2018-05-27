@@ -1,4 +1,4 @@
-package com.song.book.bean;
+package com.song.attendance.bean;
 
 import java.io.Serializable;
 

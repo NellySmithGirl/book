@@ -1,9 +1,7 @@
-package com.song.book.test;
+package com.song.attendance.test;
 
-import com.song.book.bean.Dept;
-import com.song.book.bean.Emp;
-import com.song.book.dao.DeptMapper;
-import com.song.book.dao.EmpMapper;
+import com.song.attendance.bean.Dept;
+import com.song.attendance.dao.DeptMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
