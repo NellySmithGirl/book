@@ -16,11 +16,30 @@
   <sql id="Base_Column_List">
     id, account, pass_word, name, phone, email, qq, we_chat, update_date, create_date
   </sql>
+  <sql id="select_where">
+    <where>
+      <if test="id != null">id = #{id}</if>
+      <if test="account != null">AND account = #{account}</if>
+      <if test="passWord != null">AND pass_word = #{passWord}</if>
+      <if test="name != null">AND `name` = #{name}</if>
+      <if test="phone != null">AND `phone` = #{phone}</if>
+      <if test="email != null">AND `email` = #{email}</if>
+      <if test="qq != null">AND `qq` = #{qq}</if>
+      <if test="weChat != null">AND `we_chat` = #{weChat}</if>
+    </where>
+  </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByMap" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `user`
+    <include refid="select_where"></include>
+
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user

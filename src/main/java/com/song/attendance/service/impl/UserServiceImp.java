@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class UserServiceImp implements UserService {
     @Autowired
@@ -23,5 +25,10 @@ public class UserServiceImp implements UserService {
     @Override
     public User getById(Integer id) {
         return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<User> selectByMap(Map<String, Object> map) {
+        return userMapper.selectByMap(map);
     }
 }
